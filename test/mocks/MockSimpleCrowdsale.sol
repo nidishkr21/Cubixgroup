@@ -1,10 +1,11 @@
 pragma solidity ^0.4.11;
 
-import "../../contracts/example/SimpleCrowdsale.sol";
+import "../../contracts/crowdsale/TokenCappedCrowdsale.sol";
+import "../../contracts/crowdsale/PausableCrowdsale.sol";
 
 
 /**
- * @title SampleCrowdsale
+ * @title SimpleCrowdsale
  * @dev This is an example of a fully fledged crowdsale.
  * The way to add new features to a base crowdsale is by multiple inheritance.
  * In this example we are providing following extensions:
@@ -14,11 +15,13 @@ import "../../contracts/example/SimpleCrowdsale.sol";
  * After adding multiple features it's good practice to run integration tests
  * to ensure that subcontracts works together as intended.
  */
-contract MockSimpleCrowdsale is SimpleCrowdsale {
+contract MockSimpleCrowdsale is TokenCappedCrowdsale, PausableCrowdsale {
 
 
   function MockSimpleCrowdsale(uint256 _startTime, uint256[] _ends, uint256[] _swapRate, address _tokenAddr, address _wallet, uint256[] _capTimes, uint256[] _cap)
-    SimpleCrowdsale(_startTime, _ends, _swapRate, _tokenAddr, _wallet, _capTimes, _cap)
+    Crowdsale(_startTime, _ends, _swapRate, _tokenAddr, _wallet)
+    TokenCappedCrowdsale(_capTimes, _cap)
+    PausableCrowdsale()
   {
 
   }

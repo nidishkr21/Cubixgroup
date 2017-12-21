@@ -419,6 +419,7 @@ contract('CubixCrowdsale', (accounts) => {
 
     try {
       await crowdsale.setContracts(tokenNew.address, multisigNew.address);
+      assert.fail('should have failed before');
     } catch (error) {
       assertJump(error);
     }
@@ -433,6 +434,7 @@ contract('CubixCrowdsale', (accounts) => {
 
     try {
       await crowdsale.transferTokenOwnership(multisigNew.address);
+      assert.fail('should have failed before');
     } catch (error) {
       assertJump(error);
     }
@@ -449,6 +451,7 @@ contract('CubixCrowdsale', (accounts) => {
 
     try {
       await crowdsale.buyTokens(INVESTOR, {value: MOCK_ONE_ETH, from: INVESTOR});
+      assert.fail('should have failed before');
     } catch (error) {
       assertJump(error);
     }

@@ -1,5 +1,5 @@
 const SimpleCrowdsale = artifacts.require('./helpers/MockSimpleCrowdsale.sol');
-const Token = artifacts.require('./example/SimpleToken.sol');
+const Token = artifacts.require('./token/Token.sol');
 const DataCentre = artifacts.require('./token/DataCentre.sol');
 const ControlCentre = artifacts.require('./controlCentre/ControlCentre.sol');
 const MultisigWallet = artifacts.require('./multisig/solidity/MultiSigWalletWithDailyLimit.sol');
@@ -64,8 +64,8 @@ contract('SimpleCrowdsale', (accounts) => {
     assert.equal(await simpleCrowdsale.admins(1), accounts[2], 'governance not added');
     assert.equal(await simpleCrowdsale.admins(2), accounts[3], 'governance not added');
 
-    await simpleCrowdsale.removeAdmin(accounts[3]);
     await simpleCrowdsale.removeAdmin(accounts[2]);
+    await simpleCrowdsale.removeAdmin(accounts[3]);
 
     try {
       await simpleCrowdsale.admins.call(1);
