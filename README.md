@@ -1,2 +1,2 @@
-# Simple_Crowdsale
+# Cubixgroup
 A simple crowdsale architecture with upgradable token
